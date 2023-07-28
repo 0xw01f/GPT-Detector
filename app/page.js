@@ -6,14 +6,15 @@ const TextDetector = () => {
   const [inputText, setInputText] = useState('');
   const [detectedSentences, setDetectedSentences] = useState([]);
   const [fakePercentage, setFakePercentage] = useState([]);
-
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   const [wordCount, setWordCount] = useState(0);
   const [characterCount, setCharacterCount] = useState(0);
 
   const handleInputChange = (e) => {
     const text = e.target.value;
-    setInputText(text);
+    //! Max 10 000 characters
+    setInputText(text.slice(0, 10000));
 
     // Calculate word count
     const words = text.trim().split(/\s+/);
@@ -63,11 +64,14 @@ const TextDetector = () => {
 
   const analyzeText = async () => {
     try {
+
+      setButtonDisabled(true);
+
       const response = await fetch('https://ai-content-detector-ai-gpt.p.rapidapi.com/api/detectText/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-RapidAPI-Key': process.env.API_KEY,
+          'X-RapidAPI-Key': "d9a5874814msh1bb6a08c6eb240ap19bc0ejsn2c777bdc67e1",
           'X-RapidAPI-Host': 'ai-content-detector-ai-gpt.p.rapidapi.com',
         },
         body: JSON.stringify({ text: inputText }),
@@ -82,6 +86,8 @@ const TextDetector = () => {
       setDetectedSentences(data.aiSentences);
       setFakePercentage(data.fakePercentage);
 
+      setButtonDisabled(false);
+
 
     } catch (error) {
       console.error('Error:', error.message);
@@ -93,13 +99,14 @@ const TextDetector = () => {
       <h1 className="text-5xl font-bold mt-6 text-4xl">AI Text Detector</h1>
       <h1 className="text-2xl font-thin mt-6 text-center max-sm:text-xl">Artificial intelligence detection over multiple sources of validation</h1>
       
-      <div className="bg-neutral-800 rounded-lg md:w-3/4 md:place-items-center mt-12 max-sm:w-screen">
-      <div className="md:flex md:flex md:items-center md:justify-center min-h-screen centered-child ">
+      <div className="bg-neutral-800 rounded-lg md:w-3/4 md:place-items-center md:mt-12 max-sm:w-screen">
+      <div className="md:flex md:flex md:items-center md:justify-center max-sm:min-h-screen centered-child ">
         <div className="md:w-1/2 p-6 ">
         <textarea className="w-full h-48 p-2 border bg-neutral-800 text-gray-400 rounded "  value={inputText}
         onChange={handleInputChange}/>
         <div className="mt-2 text-center">
-        <button className="mt-4 px-4 py-2 bg-purple-800 hover:bg-purple-600 text-white rounded" onClick={analyzeText}>Analyze Text</button>
+          
+        <button className={`mt-4 px-4 py-2 bg-purple-800 hover:bg-purple-600 text-white rounded ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`} maxLength={10000} onClick={analyzeText} disabled={isButtonDisabled}>Analyze Text</button>
         
         </div>  <div className="mt-2 text-center">
         <p className="text-gray-400">Word Count: {wordCount}</p>
@@ -139,4 +146,3 @@ const TextDetector = () => {
 };
 
 export default TextDetector;
-
