@@ -1,7 +1,6 @@
 
 'use client'
 import React, { useState } from 'react';
-import { Analytics } from '@vercel/analytics/react';
 
 const TextDetector = () => {
   
@@ -168,5 +167,5 @@ const TextDetector = () => {
   );
 };
 
-<Analytics />
+
 export default TextDetector;
