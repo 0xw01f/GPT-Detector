@@ -71,11 +71,12 @@ const TextDetector = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-RapidAPI-Key': "d9a5874814msh1bb6a08c6eb240ap19bc0ejsn2c777bdc67e1",
+          'X-RapidAPI-Key': "c77e5ebb21msh5d4e12f17e1886dp106974jsnd58c7fc3d677",
           'X-RapidAPI-Host': 'ai-content-detector-ai-gpt.p.rapidapi.com',
         },
         body: JSON.stringify({ text: inputText }),
       });
+
 
       if (!response.ok) {
         throw new Error('API call failed');
@@ -140,6 +141,14 @@ const TextDetector = () => {
       </div>
       <div>
     </div>
+    </div>
+    <div className="flex flex-col items-center font-light">
+      <a
+        href="https://w01f.fr"
+        className="text-center text-md font-light hover:bg-purple-800 text-gray-500"
+      >
+        Made with ♥ by w01f
+      </a>
     </div>
     </div>
   );
