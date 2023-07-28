@@ -98,7 +98,7 @@ const TextDetector = () => {
   
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-neutral-900">
-      <div className="flex items-center">
+      <div className="flex items-center text-center">
         <h1 className="text-5xl font-bold mt-6 text-4xl">AI Text Detector</h1>
         <small className="text-gray-500">{versionNumber}</small>
       </div>
