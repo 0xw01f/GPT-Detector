@@ -6,8 +6,9 @@ const TextDetector = () => {
   const versionNumber = "1.0.2";
   const [inputText, setInputText] = useState('');
   const [detectedSentences, setDetectedSentences] = useState([]);
-  const [fakePercentage, setFakePercentage] = useState([]);
+  const [fakePercentage, setFakePercentage] = useState([0]);
   const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [alert, setAlert] = useState('');
 
   const [wordCount, setWordCount] = useState(0);
   const [characterCount, setCharacterCount] = useState(0);
@@ -61,11 +62,18 @@ const TextDetector = () => {
       </div>
     );
   };
+
   
 
   const analyzeText = async () => {
     try {
 
+      
+
+      if (inputText < 20) {
+        setAlert('Please enter at least 20 characters.');
+        return 
+      }
       setButtonDisabled(true);
 
       const response = await fetch('https://ai-content-detector-ai-gpt.p.rapidapi.com/api/detectText/', {
@@ -110,7 +118,7 @@ const TextDetector = () => {
         <textarea className="w-full h-48 p-2 border bg-neutral-800 text-gray-400 rounded "  value={inputText}
         onChange={handleInputChange}/>
         <div className="mt-2 text-center">
-          
+        <p>{alert}</p>
         <button className={`mt-4 px-4 py-2 bg-purple-800 hover:bg-purple-600 text-white rounded ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`} maxLength={10000} onClick={analyzeText} disabled={isButtonDisabled}>Analyze Text</button>
         
         </div>  <div className="mt-2 text-center">
