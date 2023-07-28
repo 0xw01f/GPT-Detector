@@ -102,7 +102,7 @@ const TextDetector = () => {
         <h1 className="text-5xl font-bold mt-6 text-4xl">AI Text Detector</h1>
         <small className="text-gray-500">{versionNumber}</small>
       </div>
-      <h1 className="text-2xl font-thin mt-6 text-center max-sm:text-xl">Artificial intelligence detection over multiple sources of validation</h1>
+      <h1 className="text-2xl font-thin mt-6 text-center max-sm:text-xl">Artificial intelligence detection over <del>multiple</del> for instance one source of validation</h1>
       
       <div className="bg-neutral-800 rounded-lg md:w-3/4 md:place-items-center md:mt-12 max-sm:w-screen">
       <div className="md:flex md:flex md:items-center md:justify-center max-sm:min-h-screen centered-child ">
