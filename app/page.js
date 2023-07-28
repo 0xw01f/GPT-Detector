@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 const TextDetector = () => {
-  const versionNumber = "1.0.2";
+  const versionNumber = "1.0.4";
   const [inputText, setInputText] = useState('');
   const [detectedSentences, setDetectedSentences] = useState([]);
   const [fakePercentage, setFakePercentage] = useState([0]);
