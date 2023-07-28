@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 
 const TextDetector = () => {
-  <Analytics />
+  
   const versionNumber = "1.0.4";
   const [inputText, setInputText] = useState('');
   const [detectedSentences, setDetectedSentences] = useState([]);
@@ -168,5 +168,5 @@ const TextDetector = () => {
   );
 };
 
-
+<Analytics />
 export default TextDetector;
